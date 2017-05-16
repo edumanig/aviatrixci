@@ -1,0 +1,60 @@
+{
+  "test_case_1": {
+    "description": "Encrypted Peering: Create two Encrypted Peering successfully; Bidirectional ping between user VMs",
+    "case_data": {
+      "peering1": {
+        "gateway1": "gcloud-cus-s2c-gw1",
+        "gateway2": "gcloud-peering-nexthop",
+        "user_vm_public_1":"104.198.166.138",
+        "user_vm_private_1":"10.112.0.5",
+        "user_vm_public_2":"104.196.182.19",
+        "user_vm_private_2":"10.150.0.5",
+        "username":"ubuntu",
+        "password":"Autotest123!",
+        "vnet_name_1":"us-central1",
+        "vnet_name_2":"us-east1"
+      },
+      "peering2":{
+        "gateway1":"gcloud-peering-nexthop",
+        "gateway2":"gcloud-wus-no-vpn-1",
+        "user_vm_public_1":"104.196.182.19",
+        "user_vm_private_1":"10.150.0.5",
+        "user_vm_public_2":"104.196.253.142",
+        "user_vm_private_2":"10.106.0.5",
+        "username":"ubuntu",
+        "password":"Autotest123!",
+        "vnet_name_1":"us-east1",
+        "vnet_name_2":"us-west1"
+      }
+    },
+    "expected_result": {
+      "toaster":"have been peered. Bidirectional ping success."
+    }
+  },
+  "test_case_2": {
+    "description": "Transitive Peering: Create the Transitive Peering successfully; Bidirectional ping between user VMs",
+    "case_data": {
+      "source": "gcloud-cus-s2c-gw1",
+      "nexthop": "gcloud-peering-nexthop",
+      "destination_cidr":"10.106.0.0/20",
+      "user_vm_public_src":"104.198.166.138",
+      "user_vm_private_dest":"10.106.0.5",
+      "username":"ubuntu",
+      "password":"Autotest123!",
+      "vnet_name":"West US"
+    },
+    "expected_result": {
+      "toaster":"have been added"
+    }
+  },
+  "test_case_3": {
+    "description": "Delete the encrypted peering",
+    "case_data": {
+      "src_hop": "gcloud-cus-s2c-gw1",
+      "hop_dest": "gcloud-peering-nexthop"
+    },
+    "expected_result": {
+      "toaster":"peer have been deleted"
+    }
+  }
+}

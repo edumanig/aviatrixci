@@ -1,0 +1,77 @@
+{
+  "test_case_1": {
+    "description": "Create a gateway without VPN access",
+    "case_data": {
+      "cloud_type":"AWS",
+      "aws_region":"us-west-2",
+      "vpc_id":"vpc-2e83914a--auto-wus2",
+      "gateway_name": "auto-wus2-no-vpn",
+      "vpn_access":"deselect"
+    },
+    "expected_result": {
+      "toaster": "Successfully created Gateway",
+      "status":"Up"
+    }
+  },
+  "test_case_2": {
+    "description": "Create a gateway with VPN access enabled",
+    "case_data": {
+      "aws_region":"eu-central-1",
+      "vpc_id":"vpc-4ee10326--auto-ceu",
+      "gateway_name": "auto-euc-vpn",
+      "vpn_access":"select",
+      "vpn_cidr":"192.168.0.0/20",
+      "select_2_step_auth":"Duo",
+      "enable_elb":"no",
+      "enable_client_cert_sharing":"no",
+      "enable_ldap":"deselect"
+    },
+    "expected_result": {
+      "toaster": "Successfully created Gateway",
+      "status":"Up"
+    }
+  },
+  "test_case_3": {
+    "description": "GW HA - Gateway without VPN access: Enable HA first then switch over to backup",
+    "case_data": {
+      "gateway_name": "auto-wus2-no-vpn"
+    },
+    "expected_result": {
+      "gateway_detail":"VPC Name: ",
+      "toaster_enable": "is HA enabled",
+      "toaster_switchover":"has been switched over to the backup Gateway"
+    }
+  },
+  "test_case_4": {
+    "description": "GW HA - Gateway without VPN access: Try to resize it, disable HA and try to resize it again",
+    "case_data": {
+      "resize":"m3.medium"
+    },
+    "expected_result": {
+      "toaster": "Error: HA enabled gateway",
+      "toaster_disable":"is HA disabled",
+      "toaster_resize":"Successfully updated gateway size"
+    }
+  },
+  "test_case_5": {
+    "description": "Gateway with VPN access enabled: Not allowed to enable HA and resize it",
+    "case_data": {
+      "gateway_name": "auto-euc-vpn",
+      "resize" : "m3.medium"
+    },
+    "expected_result": {
+      "toaster_enable": "Error: HA is not supported on VPN gateway",
+      "toaster_resize":"resizing is not supported"
+    }
+  },
+  "test_case_6": {
+    "description": "Delete gateways",
+    "case_data": {
+      "gateway_name1": "auto-wus2-no-vpn",
+      "gateway_name2": "auto-euc-vpn"
+    },
+    "expected_result": {
+      "toaster": "has been deleted."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[aws_account_info]
+account_number :
+access_keyid :
+secret_key :
+s3_bucket :
+geo_domain :
+gov_account_number :
+gov_access_keyid :
+gov_secret_key :
+gov_bucket :
+
+[azure_account_info]
+cert_path :
+subscription_id :
+tenant_id :
+client_id :
+client_secret :
+azurecn_subscript_id :
+
+[gcloud_account_info]
+project_id :
+project_credentials : testdata\\keys\\
+
+
+
+

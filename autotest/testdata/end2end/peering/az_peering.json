@@ -1,0 +1,60 @@
+{
+  "test_case_1": {
+    "description": "Encrypted Peering: Create two Encrypted Peering successfully; Bidirectional ping between user VMs",
+    "case_data": {
+      "peering1": {
+        "gateway1": "az-scus-s2c-gw1",
+        "gateway2": "az-eus-nexthop",
+        "user_vm_public_1":"13.84.161.118",
+        "user_vm_private_1":"10.47.0.6",
+        "user_vm_public_2":"52.179.23.249",
+        "user_vm_private_2":"10.75.0.5",
+        "username":"ubuntu",
+        "password":"Autotest123!",
+        "vnet_name_1":"South Central US",
+        "vnet_name_2":"East US"
+      },
+      "peering2":{
+        "gateway1":"az-eus-nexthop",
+        "gateway2":"az-wus-no-vpn-1",
+        "user_vm_public_1":"52.179.23.249",
+        "user_vm_private_1":"10.75.0.5",
+        "user_vm_public_2":"40.118.128.135",
+        "user_vm_private_2":"10.43.0.5",
+        "username":"ubuntu",
+        "password":"Autotest123!",
+        "vnet_name_1":"East US",
+        "vnet_name_2":"West US"
+      }
+    },
+    "expected_result": {
+      "toaster":"have been peered. Bidirectional ping success."
+    }
+  },
+  "test_case_2": {
+    "description": "Transitive Peering: Create the Transitive Peering successfully; Bidirectional ping between user VMs",
+    "case_data": {
+      "source": "az-scus-s2c-gw1",
+      "nexthop": "az-eus-nexthop",
+      "destination_cidr":"10.43.0.0/16",
+      "user_vm_public_src":"13.84.161.118",
+      "user_vm_private_dest":"10.43.0.5",
+      "username":"ubuntu",
+      "password":"Autotest123!",
+      "vnet_name":"West US"
+    },
+    "expected_result": {
+      "toaster":"have been added"
+    }
+  },
+  "test_case_3": {
+    "description": "Delete the encrypted peering",
+    "case_data": {
+      "src_hop": "az-scus-s2c-gw1",
+      "hop_dest": "az-eus-nexthop"
+    },
+    "expected_result": {
+      "toaster":"peer have been deleted"
+    }
+  }
+}

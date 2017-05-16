@@ -1,0 +1,27 @@
+{
+  "test_case_1": {
+    "description": "Create a AWS VPC",
+    "case_data": {
+      "cloud_type":"AWS",
+      "vpc_region":"ap-south-1",
+      "vpc_cidr":"10.17.0.0/16",
+      "pool_name":"autotest-vpc",
+      "number":"1",
+      "vpc_id":""
+    },
+    "expected_result": {
+      "toaster":"Successfully created VPC pool ",
+      "pool_name":"autotest-vpc"
+    }
+  },
+  "test_case_2": {
+    "description": "Delete a AWS VPC",
+    "case_data": {
+      "pool_name":"autotest-vpc"
+    },
+    "expected_result": {
+      "toaster":"Successfully deleted VPC pool "
+    }
+  }
+
+}

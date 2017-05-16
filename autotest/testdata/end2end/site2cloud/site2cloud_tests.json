@@ -1,0 +1,40 @@
+{
+  "dummy":{
+    "description":"Provide the data for the following tests",
+    "case_data": {
+      "cloud_region": "us-west-1",
+      "VPC1_VM_ID": "i-0f6ed35d6996eaef8",
+      "VPC1_VM_PUB_IP": "52.9.250.138",
+      "VPC2_VM_PRV_IP": "10.41.0.70",
+      "VPC2_VM_VIRT_PRV_IP": "10.2.0.126",
+      "VPC2_ID": "vpc-bf3fcadb--aws-wus1-s2c-remote",
+      "GW2_s2c_conn_name": "StagingConn",
+      "gw2_primary_gateway":"aws-s2c-remote",
+      "gw2_primary_gateway_backup":"aws-s2c-remote-backup",
+      "s2c_config": {
+        "vendor": "Aviatrix",
+        "platform": "UCC",
+        "software": "1.0"
+      },
+      "ssh_key_file": "testdata\\keys\\AWS\\autoucc.pem",
+      "host_key_file": "testdata\\keys\\AWS\\known_hosts"
+    },
+    "expected_result":{
+    }
+  },
+  "test_case_1":{
+    "description": "Basic unmapped site2cloud connection",
+    "case_data": {
+      "06.enable_ha": "deselect",
+      "02.vpc_id": "vpc-24938141--aws-wus1-s2c",
+      "03.conn_type": "Unmapped",
+      "08.primary_gw": "aws-wus1-s2c-gw1",
+      "04.conn_name": "ProdConn",
+      "05.customer_gw_ip": "52.9.73.225",
+      "customer_nw_real": "10.41.0.0/16"
+    },
+    "expected_result": {
+      "toaster": "success"
+    }
+  }
+}

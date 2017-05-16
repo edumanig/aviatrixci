@@ -1,0 +1,64 @@
+{
+  "test_case_1": {
+    "description": "Create Join gateways on the existing VPCs",
+    "case_data": {
+      "gateway1": {
+        "01.cloud_type": "AWS",
+        "02.account_name": "cloud9-aws",
+        "03.region": "ap-south-1",
+        "04.vpc_id": "vpc-4cf63c25--aws-mumbai",
+        "07.vpn_access": "deselect",
+        "06.gateway_name": "join-aws-no-vpn",
+        "gateway_size": "t2.small"
+      },
+      "gateway2": {
+        "01.cloud_type": "Azure ARM",
+        "02.account_name": "cloud9-arm",
+        "03.region": "Central US",
+        "07.vpn_access": "select",
+        "06.gateway_name": "join-arm-vpn",
+        "split_tunnel_mode": "no",
+        "gateway_size": "Standard_D3"
+      },
+      "gateway3": {
+        "01.cloud_type": "Azure ARM",
+        "02.account_name": "cloud9-arm",
+        "03.region": "East US 2",
+        "07.vpn_access": "deselect",
+        "06.gateway_name": "join-arm-basic",
+        "gateway_size": "Standard_D2"
+      }
+    },
+    "expected_result": {
+      "toaster": "Successfully created Gateway "
+    }
+  },
+  "test_case_2": {
+    "description": "Allow Subnet for the Join Gateways; Then delete the subnet",
+    "case_data": {
+      "gateway1": {
+        "gateway_name": "join-aws-no-vpn",
+        "local_cidr": "10.21.0.0/24"
+      },
+      "gateway2": {
+        "gateway_name": "join-arm-vpn",
+        "local_cidr": "10.22.0.0/20"
+      }
+    },
+    "expected_result": {
+      "toaster_allow": "has been added successfully...",
+      "toaster_delete": " has been deleted from "
+    }
+  },
+  "test_case_3": {
+    "description": "Delete the Join Gateway",
+    "case_data": {
+      "gateway_name1": "join-aws-no-vpn",
+      "gateway_name2": "join-arm-vpn",
+      "gateway_name3":"join-arm-basic"
+    },
+    "expected_result": {
+      "toaster": " has been deleted"
+    }
+  }
+}

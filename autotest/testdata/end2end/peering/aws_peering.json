@@ -1,0 +1,70 @@
+{
+  "test_case_1": {
+    "description": "Encrypted Peering: Bidirectional ping between user instances",
+    "case_data": {
+      "peering1": {
+        "gateway1": "aws-eus-no-vpn-1",
+        "gateway2": "aws-peering-nexthop",
+        "user_vm_public_1": "34.198.123.188",
+        "user_vm_private_1": "10.57.0.82",
+        "user_vm_public_2": "35.167.128.90",
+        "user_vm_private_2": "10.66.0.244",
+        "username": "ubuntu",
+        "password": "Aviatester123!",
+        "vpc_name_1": "us-east-1",
+        "vpc_name_2": "us-west-2"
+      },
+      "peering2":{
+        "gateway1":"aws-peering-nexthop",
+        "gateway2":"aws-peering-trans",
+        "user_vm_public_1":"35.167.128.90",
+        "user_vm_private_1":"10.66.0.244",
+        "user_vm_public_2":"52.14.58.248",
+        "user_vm_private_2":"10.77.0.126",
+        "username":"ubuntu",
+        "password":"Aviatester123!",
+        "vpc_name_1":"us-west-2",
+        "vpc_name_2":"us-east-2"
+      }
+    },
+    "expected_result": {
+      "toaster_delete":"peer have been deleted",
+      "toaster":"have been peered. Bidirectional ping success."
+    }
+  },
+  "test_case_2": {
+    "description": "Transitive Peering: Successful ping from Source to Destination",
+    "case_data": {
+      "source": "aws-eus-no-vpn-1",
+      "nexthop": "aws-peering-nexthop",
+      "destination_cidr":"10.77.0.0/16",
+      "user_vm_public_src":"34.198.123.188",
+      "user_vm_private_dest":"10.77.0.126",
+      "username":"ubuntu",
+      "password":"Aviatester123!",
+      "vpc_name":"us-east-2"
+    },
+    "expected_result": {
+      "toaster":"have been added"
+    }
+  },
+  "test_case_3": {
+    "description": "Over AWS Peering: Successfully create an ENC peering over AWS peering; Successful bidirectional ping between the instances",
+    "case_data": {
+      "gateway1": "oap-sin-gw1",
+      "gateway2": "oap-sin-gw2",
+      "user_vm_public_1":"52.221.64.2",
+      "user_vm_private_1":"172.31.0.254",
+      "user_vm_public_2":"52.221.48.189",
+      "user_vm_private_2":"10.89.0.218",
+      "username":"ubuntu",
+      "password":"Aviatester123!",
+      "vpc_name_1":"aws-sin1",
+      "vpc_name_2":"auto-sin2"
+    },
+    "expected_result": {
+      "toaster":"have been peered.",
+      "toaster_delete":"peer have been deleted"
+    }
+  }
+}

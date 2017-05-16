@@ -1,0 +1,28 @@
+{
+   "test_case_1": {
+     "description": "Check all gateways on map",
+     "case_data": {
+     },
+     "expected_result": {
+       "total_gateway_count": ""
+     }
+   },
+  "test_case_2": {
+    "description": "Check all encrypted peering on map",
+    "case_data": {
+    },
+    "expected_result": {
+    }
+  },
+  "test_case_3": {
+    "description": "Check Active VPN user",
+    "case_data": {
+      "active_user_name": "Jessie"
+    },
+    "expected_result": {
+      "total_user_before":"1",
+      "total_user_after":"0",
+      "toaster": "Disconnected VPN user Jessie successfully."
+    }
+  }
+}

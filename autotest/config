@@ -1,0 +1,21 @@
+[aws_tests]
+suite : frontend.site2cloud.s2c_conn_del
+#suite : frontend.advanced_config.create_vpc_pool.create_vpc_pool
+#suite : frontend.onboarding.onboarding_tests
+
+[azure_tests]
+suite :
+
+[gcloud_tests]
+suite :
+
+[download]
+autotest_download : testdata\\download
+
+[results]
+path_for_file_to_save : results\\temp
+recipient_email :
+
+
+
+

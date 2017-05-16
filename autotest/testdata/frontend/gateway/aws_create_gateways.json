@@ -1,0 +1,37 @@
+{
+ "test_case_1": {
+   "description":"Create a AWS gateway without VPN access",
+   "case_data":{
+     "01.cloud_type": "AWS",
+     "02.account_name": "ucc-101",
+     "03.region": "ap-south-1",
+     "04.vpc_id": "vpc-2f954746--aws-mumbai",
+     "07.vpn_access": "deselect",
+     "06.gateway_name": "testgateway1",
+     "gateway_size": "t2.small"
+   },
+   "expected_result":{
+     "toaster":"Successfully created Gateway ",
+     "status":"up"
+   }
+ },
+  "test_case_2": {
+   "description":"Create a AWS gateway with VPN access and elb enabled",
+   "case_data":{
+     "01.cloud_type": "AWS",
+     "02.account_name": "ucc-101",
+     "03.region": "eu-west-1",
+     "07.vpn_access": "select",
+     "06.gateway_name": "testgateway2",
+     "gateway_size": "t2.micro",
+     "split_tunnel_mode":"no",
+     "08.enable_elb":"yes",
+     "elb_name":"eu-west-testgw2",
+     "04.vpc_id": "vpc-1eb3097a--uccireland"
+   },
+   "expected_result":{
+     "toaster":"Successfully created Gateway ",
+     "status":"up"
+   }
+ }
+}

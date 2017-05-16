@@ -1,0 +1,84 @@
+{
+  "test_case_1": {
+     "description":"Create a gateway with VPN access and LDAP enabled",
+     "case_data":{
+       "01.cloud_type": "Azure",
+       "03.region": "East US",
+       "05.vnet_name": "az-eus",
+       "07.vpn_access": "select",
+       "06.gateway_name": "az-e2e-openvpn",
+       "gateway_size": "ExtraSmall",
+       "vpn_cidr_block":"192.168.75.0/24",
+       "10.enable_ldap":"select",
+       "ldap_server":"52.10.16.89",
+       "bind_dn":"AVIATRIXTEST\\Administrator",
+       "ldap_password":"Aviatrix123",
+       "base_dn":"DC=aviatrixtest, DC=com",
+       "username_attribute":"sAMAccountName"
+     },
+     "expected_result":{
+       "toaster":"Successfully created Gateway ",
+       "status":"Up"
+     }
+  },
+  "test_case_2": {
+     "description":"Create a VPN User associated with the Gateway",
+     "case_data":{
+       "id_vpc": "az-eus",
+       "lb_name":"az-e2e-openvpn",
+       "associate_profile":"deselect",
+       "user_name": "az-vpnuser1",
+       "user_email": "avtxautotester@gmail.com"
+     },
+     "expected_result":{
+     }
+  },
+  "test_case_3": {
+     "description":"Download OpenVPN config; Upload the config and auth files; Run openvpn and ensure the session passes auth and is successful; Ping from client to the instance/VM behind VPN Gateway",
+     "case_data":{
+       "user_email": "avtxautotester@gmail.com",
+       "email_password":"Autotest123!",
+       "client_ip":"40.121.89.206",
+       "ssh_username":"ubuntu",
+       "ssh_password":"Autotest123!",
+       "auth_file":"testdata\\keys\\ARM\\vpn_ldap_auth",
+       "target_ip":"10.75.0.5",
+       "log_path":"/var/log/openvpn.log"
+     },
+     "expected_result":{
+       "message":"Initialization Sequence Completed"
+     }
+  },
+  "test_case_4": {
+     "description":"Verify the VPN user is displayed on Dashboard; Landing gateway and Virtual IP are correct",
+     "case_data":{
+       "active_user_name": "az-vpnuser1"
+     },
+     "expected_result":{
+       "landing_gateway":"az-e2e-openvpn",
+       "virtual_ip":"192.168.75.6"
+     }
+  },
+  "test_case_5": {
+     "description":"Terminate openvpn client; Should fail Ping test; VPN user is no longer displayed on Dashboard",
+     "case_data":{
+       "client_ip":"40.121.89.206",
+       "ssh_username":"ubuntu",
+       "ssh_password":"Autotest123!",
+       "target_ip":"10.75.0.5",
+       "active_user_name":"az-vpnuser1"
+     },
+     "expected_result":{
+     }
+  },
+  "test_case_6": {
+    "description": "Delete the VPN user and the associated VPN gateway",
+    "case_data": {
+      "user_name":"az-vpnuser1",
+      "gateway_name":"az-e2e-openvpn"
+    },
+    "expected_result": {
+      "toaster": " has been removed from vpc "
+    }
+  }
+}

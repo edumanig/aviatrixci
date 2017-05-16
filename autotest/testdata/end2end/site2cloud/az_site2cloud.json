@@ -1,0 +1,40 @@
+{
+  "dummy":{
+    "description":"Provide the data for the following tests",
+    "case_data": {
+      "cloud_region": "WEST US",
+      "VPC1_VM_ID": "",
+      "VPC1_VM_PUB_IP": "13.84.161.118",
+      "VPC2_VM_PRV_IP": "10.43.0.5",
+      "VPC2_VM_VIRT_PRV_IP": "",
+      "VPC2_ID": "az-wus",
+      "GW2_s2c_conn_name": "StagingConn",
+      "gw2_primary_gateway":"az-wus-no-vpn-1",
+      "gw2_primary_gateway_backup":"",
+      "s2c_config": {
+        "vendor": "Aviatrix",
+        "platform": "UCC",
+        "software": "1.0"
+      },
+      "username": "ubuntu",
+      "password": "Autotest123!"
+    },
+    "expected_result":{
+    }
+  },
+  "test_case_1":{
+    "description": "Basic unmapped site2cloud connection",
+    "case_data": {
+      "06.enable_ha": "deselect",
+      "02.vpc_id": "az-scus",
+      "03.conn_type": "Unmapped",
+      "08.primary_gw": "az-scus-s2c-backup",
+      "04.conn_name": "ProdConn",
+      "05.customer_gw_ip": "40.86.183.71",
+      "customer_nw_real": "10.43.0.0/16"
+    },
+    "expected_result": {
+      "toaster": "success"
+    }
+  }
+}

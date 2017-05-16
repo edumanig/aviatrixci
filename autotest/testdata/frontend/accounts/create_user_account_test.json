@@ -1,0 +1,13 @@
+{
+  "test_case_1": {
+    "description": "Create a User Account and then delete it",
+    "case_data": {
+      "user_account": "testuseracc01",
+      "cloud_account": "auto-aws",
+      "account_email":"testuseracc01@12345.com",
+      "account_password":"Avtx123!"
+    },
+    "expected_result": {
+    }
+  }
+}

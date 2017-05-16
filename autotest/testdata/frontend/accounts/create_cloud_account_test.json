@@ -1,0 +1,34 @@
+{
+  "test_case_1": {
+    "description":"Create a cloud account",
+    "case_data":{
+      "account_name" : "romo",
+      "account_email" : "romo@12345.com",
+      "account_password" : "Avtx123!",
+      "aws_account_number" : "",
+      "aws_access_keyid" : "",
+      "aws_secret_key" : "",
+      "azure_subscript_id" : "",
+      "arm_tenant_id" : "",
+      "arm_client_id" : "",
+      "arm_client_secret" : "",
+      "azurecn_subscript_id" : "",
+      "aws_gov_account_number" : "",
+      "aws_gov_access_keyid" : "",
+      "aws_gov_secret_key" : "",
+      "aws_gov_bucket" : "",
+      "gce_project_id" : "",
+      "gce_credential" : ""
+    },
+    "expected_result":{
+    }
+  },
+  "test_case_2": {
+    "description": "Delete a cloud account",
+    "case_data": {
+      "account_name" : "romo"
+    },
+    "expected_result": {
+    }
+  }
+}

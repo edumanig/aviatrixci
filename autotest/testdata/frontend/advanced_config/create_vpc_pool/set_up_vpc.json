@@ -1,0 +1,45 @@
+{
+  "set_up_vpc": {
+    "description": "Prepare VPC for test",
+    "case_data": {
+      "cloud_type": "AWS",
+      "vpc_region": "ap-south-1",
+      "vpc_cidr": "10.11.0.0/16",
+      "pool_name": "autotest-vpc",
+      "number": "1"
+    },
+    "expected_result": {
+      "toaster": "Successfully created VPC pool ",
+      "pool_name": "autotest-vpc"
+    }
+  },
+  "set_up_gateway":{
+    "description":"Create two gateways for test",
+    "case_data":{
+        "gateway1":{
+          "01.cloud_type":"AWS",
+          "02.account_name":"ucc-101",
+          "03.region":"ap-south-1",
+          "04.vpc_id":"",
+          "07.vpn_access": "deselect",
+          "06.gateway_name": "testgateway1",
+          "gateway_size": "t2.small"
+        },
+        "gateway2":{
+          "01.cloud_type": "AWS",
+          "02.account_name": "ucc-101",
+          "03.region": "ap-south-1",
+          "07.vpn_access": "select",
+          "06.gateway_name": "testgateway2",
+          "gateway_size": "t2.micro",
+          "split_tunnel_mode":"no",
+          "08.enable_elb":"yes",
+          "elb_name":"ap-south-testgw2",
+          "04.vpc_id": ""
+        }
+      },
+     "expected_result": {
+      "toaster":"Successfully created Gateway "
+    }
+  }
+}

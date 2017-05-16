@@ -1,0 +1,37 @@
+{
+  "test_case_1": {
+     "description": "Create a Azure VNet with VPN access",
+     "case_data": {
+       "01.cloud_type": "Azure ARM",
+       "02.account_name": "cloud9-arm",
+       "03.region": "Central US",
+       "04.cidr": "172.16.150.128/26",
+       "06.vpn_access": "select",
+       "05.gateway_name": "cloud9arm-de-1",
+       "gateway_size": "Standard_D2"
+     },
+     "expected_result": {
+       "toaster_create": "VNET is successfully created. An email with instructions has been sent",
+       "status":"Up",
+       "toaster_delete":" has been deleted"
+     }
+   },
+  "test_case_2": {
+     "description": "Create a AWS VPC with VPN access",
+     "case_data": {
+       "01.cloud_type": "AWS",
+       "02.account_name": "cloud9-aws",
+       "03.region": "us-west-2",
+       "04.cidr": "172.16.150.192/26",
+       "06.vpn_access": "select",
+       "05.gateway_name": "cloud9aws-de-1",
+       "gateway_size": "t2.micro",
+       "07.split_tunnel_mode":"no"
+     },
+     "expected_result": {
+       "toaster_create": "VPC is successfully created. An email with instructions has been sent",
+       "status":"Up",
+       "toaster_delete":" has been deleted"
+     }
+   }
+}
